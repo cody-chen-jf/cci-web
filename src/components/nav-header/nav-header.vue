@@ -1,0 +1,42 @@
+<template>
+  <div>
+    <Menu mode="horizontal"  active-name="1">
+      <img src="./../../assets/logo.jpg" alt="logo" style="width: 150px; height: 100%; float: left; padding: 10px">
+      <MenuItem name="1">
+        货柜照片
+      </MenuItem>
+      <Dropdown style="margin-right: 40px; float: right">
+        <a href="javascript:void(0)">
+          Cody
+          <Icon type="md-arrow-dropdown" />
+        </a>
+        <DropdownMenu slot="list">
+          <DropdownItem>退出</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+      <Dropdown trigger="click" style="margin-right: 40px; float: right">
+        <a href="javascript:void(0)">
+          简体中文
+          <Icon type="md-arrow-dropdown" />
+        </a>
+        <DropdownMenu slot="list">
+          <DropdownItem>简体中文</DropdownItem>
+          <DropdownItem>繁体中文</DropdownItem>
+          <DropdownItem>English</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+
+    </Menu>
+
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'nav-header'
+}
+</script>
+
+<style scoped>
+
+</style>
