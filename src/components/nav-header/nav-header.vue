@@ -1,12 +1,13 @@
 <template>
   <div>
     <Menu mode="horizontal"  active-name="1">
-      <img src="./../../assets/logo.jpg" alt="logo" style="width: 150px; height: 100%; float: left; padding: 10px">
+      <img src="./../../assets/logo.svg" alt="logo" style="width: 50px; height: 100%; float: left; padding: 10px">
+      <span style="float: left; padding: 0 20px 0 8px">口袋貨櫃</span>
       <MenuItem name="1">
         货柜照片
       </MenuItem>
       <Dropdown style="margin-right: 40px; float: right">
-        <a href="javascript:void(0)">
+        <a href="javascript:void(0)" style="color: #666">
           Cody
           <Icon type="md-arrow-dropdown" />
         </a>
@@ -15,7 +16,7 @@
         </DropdownMenu>
       </Dropdown>
       <Dropdown trigger="click" style="margin-right: 40px; float: right">
-        <a href="javascript:void(0)">
+        <a href="javascript:void(0)" style="color: #666">
           简体中文
           <Icon type="md-arrow-dropdown" />
         </a>

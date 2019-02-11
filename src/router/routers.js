@@ -1,4 +1,4 @@
-// import Home from '../views/Home.vue'
+import HomeTest from '../views/Home.vue'
 import Admin from '@/views/admin-page'
 import HomePage from '@/views/home/home-page'
 
@@ -10,6 +10,10 @@ export default [
       {
         path: '/home',
         component: HomePage
+      },
+      {
+        path: '/home-test',
+        component: HomeTest
       },
       {
         path: '/about',

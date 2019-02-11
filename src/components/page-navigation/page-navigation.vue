@@ -9,7 +9,7 @@
       </Checkbox>
     </div>
     <div class="page-selector">
-      <Page :total="100" show-elevator size="small" />
+      <Page :total="totalCount" :page-size="20" show-elevator size="small" @on-change="onPageChange" show-sizer @on-page-size-change="onPageSizeChange"/>
     </div>
   </div>
 </template>
@@ -17,10 +17,24 @@
 <script>
 export default {
   name: 'page-navigation',
+  props: {
+    totalCount: {
+      type: Number,
+      default: 0
+    }
+  },
   data() {
     return {
       indeterminate: true,
       checkAll: false
+    }
+  },
+  methods: {
+    onPageChange(page) {
+      this.$emit('on-page-change', page)
+    },
+    onPageSizeChange(pageSize) {
+      console.log(pageSize)
     }
   }
 }

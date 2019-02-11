@@ -31,27 +31,28 @@
           </FormItem>
           <FormItem :label-width="0" class="form-item search" style="margin-left: 0">
             <Button type="success">Search</Button>
-            <a href="javascript:void(0)" @click="toggleSearch" style="margin-left: 20px">收起</a>
+            <a href="javascript:void(0)" @click="toggleSearch" style="margin-left: 20px">{{ isSuperSearch ? '收起' : '展开' }} </a>
           </FormItem>
         </Form>
       </div>
       <div class="switch-group">
         <ButtonGroup>
-          <Button @click="showJobCardView">缩略图</Button>
-          <Button @click="showJobTableView" type="primary">列表</Button>
+          <Button @click="showJobCardView" :type="isShowJobCard ? 'primary' : 'default'">缩略图</Button>
+          <Button @click="showJobTableView" :type="isShowJobTable ? 'primary' : 'default'">列表</Button>
         </ButtonGroup>
       </div>
     </div>
     <div class="container">
-      <JobTable :tableHeight="offsetHeight" v-if="isShowJobTable" @onTableItemClick="onTableItemClick"></JobTable>
-      <JobCard :cardListHeight="offsetHeight" v-if="isShowJobCard"></JobCard>
+      <JobTable :job-list="jobList" :tableHeight="offsetHeight" v-if="isShowJobTable"  @onTableItemClick="onTableItemClick"></JobTable>
+      <JobCard :job-list="jobList" :cardListHeight="offsetHeight" v-if="isShowJobCard"></JobCard>
     </div>
-    <PageNavigation></PageNavigation>
+    <PageNavigation @on-page-change="onPageChange" :total-count="100"></PageNavigation>
     <JobPreview :showDialog="showDialog" @closeDialog="closeDialog"></JobPreview>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import JobTable from '_c/job-table'
 import JobCard from '_c/job-card'
 import JobPreview from '_c/job-preview'
@@ -75,14 +76,28 @@ export default {
       isSuperSearch: false,
       isShowJobCard: false,
       isShowJobTable: true,
-      showDialog: false
+      showDialog: false,
+      jobList: []
     }
+  },
+  async created() {
+    let result = await axios.get('http://localhost:8080/job-list.json')
+    this.jobList = result.data.data
   },
   mounted() {
     window.addEventListener('resize', this.resizeWindow)
     this.offsetHeight = document.body.offsetHeight - (document.getElementById('header-group').offsetHeight + document.getElementById('title').offsetHeight + 60 + 50)
   },
   methods: {
+    async onPageChange(page) {
+      if (page === 1) {
+        let result = await axios.get('http://localhost:8080/job-list.json')
+        this.jobList = result.data.data
+      } else {
+        let result = await axios.get('http://localhost:8080/job-list2.json')
+        this.jobList = result.data.data
+      }
+    },
     toggleSearch() {
       this.isSuperSearch = !this.isSuperSearch
     },
@@ -137,5 +152,13 @@ export default {
 
   .container {
     margin: 0 12px;
+  }
+
+  .show-view {
+    display: inherit;
+  }
+
+  .hide-view {
+    display: none;
   }
 </style>

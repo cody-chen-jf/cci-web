@@ -2,6 +2,8 @@ import Cookies from 'js-cookie'
 
 export const TOKEN_KEY = 'token'
 
+export const cookieExpires = 1
+
 export const localSave = (key, value) => {
   localStorage.setItem(key, value)
 }
