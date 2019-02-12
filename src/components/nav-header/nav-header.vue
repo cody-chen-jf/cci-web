@@ -1,8 +1,8 @@
 <template>
   <div>
     <Menu mode="horizontal"  active-name="1">
-      <img src="./../../assets/logo.svg" alt="logo" style="width: 50px; height: 100%; float: left; padding: 10px">
-      <span style="float: left; padding: 0 20px 0 8px">口袋貨櫃</span>
+      <img @click="jumpHome" src="./../../assets/logo.svg" alt="logo" style="width: 50px; height: 100%; float: left; padding: 10px">
+      <span @click="jumpPage" style="float: left; padding: 0 20px 0 8px">口袋貨櫃3</span>
       <MenuItem name="1">
         货柜照片
       </MenuItem>
@@ -34,7 +34,15 @@
 
 <script>
 export default {
-  name: 'nav-header'
+  name: 'nav-header',
+  methods: {
+    jumpPage() {
+      this.$router.push('/about')
+    },
+    jumpHome() {
+      this.$router.push('/home')
+    }
+  }
 }
 </script>
 

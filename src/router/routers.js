@@ -8,6 +8,10 @@ export default [
     component: Admin,
     children: [
       {
+        path: '/',
+        component: HomePage
+      },
+      {
         path: '/home',
         component: HomePage
       },
