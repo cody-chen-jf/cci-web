@@ -81,7 +81,7 @@ export default {
     }
   },
   async created() {
-    let result = await axios.get('http://localhost:8080/job-list.json')
+    let result = await axios.get('/job-list.json')
     this.jobList = result.data.data
   },
   mounted() {
@@ -91,10 +91,10 @@ export default {
   methods: {
     async onPageChange(page) {
       if (page === 1) {
-        let result = await axios.get('http://localhost:8080/job-list.json')
+        let result = await axios.get('/job-list.json')
         this.jobList = result.data.data
       } else {
-        let result = await axios.get('http://localhost:8080/job-list2.json')
+        let result = await axios.get('/job-list2.json')
         this.jobList = result.data.data
       }
     },
